@@ -6,9 +6,6 @@
     "license": [
         "AGPL-3.0-or-later"
     ],
-    "require": {
-        "magento/customer": "*"
-    },
     "autoload": {
         "psr-4": {
             "DnD\\OfferManager\\": ""
