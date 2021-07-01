@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">offer_form.offer_form_data_source</item>
+            <item name="deps" xsi:type="string">offer_form.offer_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Offer Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">offer_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back" class="DnD\OfferManager\Block\Adminhtml\Grid\BackButton"/>
+            <button name="delete" class="DnD\OfferManager\Block\Adminhtml\Grid\DeleteButton"/>
+            <button name="save" class="DnD\OfferManager\Block\Adminhtml\Grid\SaveButton"/>
+        </buttons>
+    </settings>
+
+    <dataSource name="offer_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="dnd_offermanager/grid/edit"/>
+        </settings>
+        <dataProvider class="DnD\OfferManager\Ui\DataProvider\Offer\Form\DataProvider" name="offer_form_data_source">
+            <settings>
+                <requestFieldName>offer_id</requestFieldName>
+                <primaryFieldName>offer_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="offer">
+        <settings>
+            <dataScope>offer</dataScope>
+            <label translate="true">Offer Information</label>
+        </settings>
+        <field name="offer_id" formElement="input">
+            <settings>
+                <visible>false</visible>
+                <label translate="true">id</label>
+            </settings>
+        </field>
+        <field name="name" formElement="input">
+            <settings>
+                <label translate="true">Name</label>
+            </settings>
+        </field>
+        <field name="content" formElement="textarea">
+            <settings>
+                <label translate="true">Offer Content</label>
+            </settings>
+        </field>
+        <field name="redirect_url" formElement="input">
+            <settings>
+                <label translate="true">Redirect URL</label>
+            </settings>
+        </field>
+        <field name="image" formElement="imageUploader" sortOrder="40" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Demo</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Image</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="dnd_offermanager/grid/ImageUpload"/>
+                        </uploaderConfig>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="start_date" formElement="date">
+            <settings>
+                <label translate="true">Campaign Start Date</label>
+            </settings>
+        </field>
+        <field name="end_date" formElement="date">
+            <settings>
+                <label translate="true">Campaign End Date</label>
+            </settings>
+        </field>
+
+        <field name="categories" component="Magento_Catalog/js/components/new-category" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <label translate="true">Parent Category</label>
+                <componentType>field</componentType>
+                <listens>
+                    <link name="${ $.namespace }.${ $.namespace }:responseData">setParsed</link>
+                </listens>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Catalog\Ui\Component\Product\Form\Categories\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

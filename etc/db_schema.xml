@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dnd_offermanager_offer">
+        <column xsi:type="int" name="offer_id" identity="true" nullable="false"/>
+        <column xsi:type="text" name="name" nullable="false"/>
+        <column xsi:type="text" name="content" nullable="false"/>
+        <column xsi:type="text" name="image_name" nullable="false"/>
+        <column xsi:type="text" name="image_url" nullable="false"/>
+        <column xsi:type="text" name="redirect_url" nullable="false"/>
+        <column xsi:type="date" name="start_date" nullable="false"/>
+        <column xsi:type="date" name="end_date" nullable="false"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="offer_id"/>
+        </constraint>
+    </table>
+
+    <table name="dnd_offermanager_offer_category">
+        <column xsi:type="int" name="offer_id" nullable="false"/>
+        <column xsi:type="int" name="category_id" unsigned="true" nullable="false"/>
+
+        <constraint
+            xsi:type="foreign"
+            referenceId="DND_OFFER_OFFER_ID"
+            table="dnd_offermanager_offer_category"
+            column="offer_id"
+            referenceTable="dnd_offermanager_offer"
+            referenceColumn="offer_id"
+            onDelete="CASCADE"
+        />
+        <constraint
+            xsi:type="foreign"
+            referenceId="CATALOG_CATEGORY_ENTITY_ENTITY_ID"
+            table="dnd_offermanager_offer_category"
+            column="category_id"
+            referenceTable="catalog_category_entity"
+            referenceColumn="entity_id"
+            onDelete="CASCADE"
+        />
+    </table>
+</schema>

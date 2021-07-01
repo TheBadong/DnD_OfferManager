@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DnD_OfferManager::section" title="DnD" translate="title" module="DnD_OfferManager" parent="Magento_Backend::marketing" sortOrder="0" resource="DnD_OfferManager::listing"/>
+        <add id="DnD_OfferManager::listing" title="Offer Manager" translate="title" module="DnD_OfferManager" parent="DnD_OfferManager::section" sortOrder="0" action="dnd_offermanager/grid" resource="DnD_OfferManager::listing"/>
+    </menu>
+</config>

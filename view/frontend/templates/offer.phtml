@@ -1,0 +1,45 @@
+<?php
+/** @var \DnD\OfferManager\Block\Offer $block */
+
+$mediaUrl = $block->getMediaUrl();
+$offers = $block->getOffers();
+?>
+
+<?php if($offers): ?>
+<div id="offer-slider" class="splide">
+    <div class="splide__track">
+        <ul class="splide__list">
+            <?php foreach($offers as $offer): ?>
+            <li class="splide__slide">
+                <div class="offer-container">
+                    <div class="inner-container">
+                        <div class="offer-image-container">
+                            <img src="<?= $mediaUrl . $offer->getImageUrl() ?>" alt="<?= $offer->getImageName() ?>">
+                        </div>
+                        <div class="offer-text-container">
+                            <span><?= $offer->getContent() ?></span>
+                        </div>
+                        <div class="offer-button-container">
+                            <a href="<?= $offer->getRedirectUrl() ?>"><?=__('More Info')?></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+<?php endif; ?>
+
+<script>
+    require([
+        'jquery',
+        'splide'
+    ], function ($) {
+        new Splide('#offer-slider',{
+            type: 'loop',
+            autoplay: true
+        }).mount();
+    });
+
+</script>

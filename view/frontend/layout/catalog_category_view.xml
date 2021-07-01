@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link rel="stylesheet" src="DnD_OfferManager::css/splide.min.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.top">
+            <block
+                class="DnD\OfferManager\Block\Offer"
+                name="category.offer"
+                template="DnD_OfferManager::offer.phtml"
+                before="breadcrumbs"/>
+        </referenceContainer>
+    </body>
+</page>

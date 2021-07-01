@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="offer_grid_data_source" xsi:type="string">OfferGridDataSource</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="OfferGridDataSource" type="DnD\OfferManager\Ui\DataProvider\Offer\Listing\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dnd_offermanager_offer</argument>
+            <argument name="resourceModel" xsi:type="string">DnD\OfferManager\Model\ResourceModel\Offer</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- image uploader - Customizing default Image Uploader used by Magento_Catalog-->
+    <virtualType name="OfferImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">dnd_offermanager/tmp/offer</argument>
+            <argument name="basePath" xsi:type="string">dnd_offermanager/offer</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Injecting custom ImageUploader in the offer save controller -->
+    <type name="DnD\OfferManager\Controller\Adminhtml\Grid\ImageUpload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">OfferImageUploader</argument>
+        </arguments>
+    </type>
+
+    <type name="DnD\OfferManager\Model\OfferRepository">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">OfferImageUploader</argument>
+        </arguments>
+    </type>
+
+    <!-- OfferCategory service contract -->
+    <preference for="DnD\OfferManager\Api\OfferRepositoryInterface"
+                type="DnD\OfferManager\Model\OfferRepository"/>
+    <preference for="DnD\OfferManager\Api\Data\OfferInterface"
+                type="DnD\OfferManager\Model\Offer"/>
+
+</config>

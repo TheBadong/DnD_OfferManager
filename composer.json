@@ -1,0 +1,20 @@
+{
+    "name": "dnd/offer-manager",
+    "type": "composer-plugin",
+    "description": "This module allows the creation of marketing offers that display on the frontend",
+    "version": "1.0.0",
+    "license": [
+        "AGPL-3.0-or-later"
+    ],
+    "require": {
+        "magento/customer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "DnD\\OfferManager\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

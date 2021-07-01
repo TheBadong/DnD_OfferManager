@@ -1,0 +1,30 @@
+{
+    "dnd_offermanager_offer": {
+        "column": {
+            "offer_id": true,
+            "name": true,
+            "title": true,
+            "description": true,
+            "image_name": true,
+            "image_url": true,
+            "redirect_path": true,
+            "start_date": true,
+            "end_date": true,
+            "redirect_url": true,
+            "content": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "dnd_offermanager_offer_category": {
+        "column": {
+            "offer_id": true,
+            "category_id": true
+        },
+        "constraint": {
+            "FK_E782F24D31B9786CDE48CBE6D1A6EB45": true,
+            "DND_OFFERMANAGER_OFFER_CTGR_CTGR_ID_CAT_CTGR_ENTT_ENTT_ID": true
+        }
+    }
+}
