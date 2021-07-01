@@ -16,5 +16,11 @@
         "files": [
             "registration.php"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/TheBadong/DnD_OfferManager"
+        }
+    ]
 }
