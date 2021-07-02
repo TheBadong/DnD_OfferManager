@@ -1,6 +1,6 @@
 {
     "name": "dnd/offer-manager",
-    "type": "composer-plugin",
+    "type": "magento2-module",
     "description": "This module allows the creation of marketing offers that display on the frontend",
     "version": "1.0.0",
     "license": [
