@@ -2,7 +2,7 @@
     "name": "dnd/offer-manager",
     "type": "magento2-module",
     "description": "This module allows the creation of marketing offers that display on the frontend",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": [
         "AGPL-3.0-or-later"
     ],
